@@ -19,6 +19,7 @@
 		19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BA2BC5993F007B4667 /* BaseViewController.swift */; };
 		19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BC2BC599CB007B4667 /* ContainerViewController.swift */; };
 		19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BE2BC63725007B4667 /* MapPointViewSample.swift */; };
+		55FFCBC02BC6876700012259 /* RegionPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFCBBF2BC6876000012259 /* RegionPointModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,7 @@
 		19D322BA2BC5993F007B4667 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		19D322BC2BC599CB007B4667 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		19D322BE2BC63725007B4667 /* MapPointViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPointViewSample.swift; sourceTree = "<group>"; };
+		55FFCBBF2BC6876000012259 /* RegionPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionPointModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,17 +77,42 @@
 		195662CA2BC3833C0092B4E0 /* BoongBoong */ = {
 			isa = PBXGroup;
 			children = (
-				195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */,
-				195662CB2BC3833C0092B4E0 /* AppDelegate.swift */,
-				19D322BA2BC5993F007B4667 /* BaseViewController.swift */,
-				19D322BE2BC63725007B4667 /* MapPointViewSample.swift */,
-				19D322BC2BC599CB007B4667 /* ContainerViewController.swift */,
+				55FFCBC32BC6878C00012259 /* Model */,
+				55FFCBC22BC6878500012259 /* Delegate */,
+				55FFCBC12BC6877900012259 /* ViewController */,
 				195662D12BC3833C0092B4E0 /* Main.storyboard */,
 				195662D42BC3833E0092B4E0 /* Assets.xcassets */,
 				195662D62BC3833E0092B4E0 /* LaunchScreen.storyboard */,
 				195662D92BC3833E0092B4E0 /* Info.plist */,
 			);
 			path = BoongBoong;
+			sourceTree = "<group>";
+		};
+		55FFCBC12BC6877900012259 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				19D322BA2BC5993F007B4667 /* BaseViewController.swift */,
+				19D322BE2BC63725007B4667 /* MapPointViewSample.swift */,
+				19D322BC2BC599CB007B4667 /* ContainerViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		55FFCBC22BC6878500012259 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */,
+				195662CB2BC3833C0092B4E0 /* AppDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		55FFCBC32BC6878C00012259 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				55FFCBBF2BC6876000012259 /* RegionPointModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55FFCBC02BC6876700012259 /* RegionPointModel.swift in Sources */,
 				195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */,
 				19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */,
 				195662CE2BC3833C0092B4E0 /* SceneDelegate.swift in Sources */,

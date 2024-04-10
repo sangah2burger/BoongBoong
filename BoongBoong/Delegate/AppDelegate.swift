@@ -12,7 +12,7 @@ import KakaoMapsSDK
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        guard let apiKey = Bundle.main.apiKey else {
+        guard let apiKey = Bundle.main.nativeKey else {
             print("API 키를 로드하지 못했습니다.")
             return true
         }
@@ -40,8 +40,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension Bundle {
-    var apiKey : String? {
-        return infoDictionary?["API_KEY"] as? String
+    var nativeKey : String? {
+        return infoDictionary?["NAT_KEY"] as? String
     }
+    var restKey : String? {
+        return infoDictionary?["REST_KEY"] as? String
+    }
+    var oilKey : String? {
+        return infoDictionary?["OIL_KEY"] as? String
+    }
+    var parkingKey : String? {
+        return infoDictionary?["PARK_KEY"] as? String
+    }
+    
 }
 

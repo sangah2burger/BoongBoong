@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("API 키를 로드하지 못했습니다.")
             return true
         }
+        print(apiKey)
         SDKInitializer.InitSDK(appKey: apiKey)
         // Override point for customization after application launch.
         return true

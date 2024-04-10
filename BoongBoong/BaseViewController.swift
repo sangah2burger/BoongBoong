@@ -7,9 +7,10 @@
 
 import UIKit
 import KakaoMapsSDK
+import CoreLocation
 
-class BaseViewController: UIViewController, MapControllerDelegate {
-
+class BaseViewController: UIViewController, MapControllerDelegate, CLLocationManagerDelegate {
+    var manager = CLLocationManager()
     var mapContainer: KMViewContainer?
     var mapController: KMController?
     var _observerAdded: Bool
@@ -33,6 +34,13 @@ class BaseViewController: UIViewController, MapControllerDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+//        manager.allowsBackgroundLocationUpdates = true
+        manager.requestWhenInUseAuthorization()
+        manager.requestAlwaysAuthorization()
+        manager.startUpdatingLocation()
+        manager.delegate = self
+        
         mapContainer = self.view as? KMViewContainer
         
         //KMController 생성.
@@ -112,7 +120,7 @@ class BaseViewController: UIViewController, MapControllerDelegate {
         //여기에서 그릴 View(KakaoMap, Roadview)들을 추가한다.
         let defaultPosition: MapPoint = MapPoint(longitude: 127.108678, latitude: 37.402001)
         //지도(KakaoMap)를 그리기 위한 viewInfo를 생성
-        let mapviewInfo: MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 7)
+        let mapviewInfo: MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 15)
         
         //KakaoMap 추가.
         mapController?.addView(mapviewInfo)
@@ -185,5 +193,21 @@ class BaseViewController: UIViewController, MapControllerDelegate {
     }
     
 
+}
 
+extension ViewController : CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        manager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else { return }
+        print("\(location.coordinate.latitude)")
+        print("\(location.coordinate.longitude)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print("error\(error.localizedDescription)")
+    }
+    
 }

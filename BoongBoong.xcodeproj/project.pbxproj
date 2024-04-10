@@ -18,6 +18,7 @@
 		19D322B52BC541F0007B4667 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 19D322B42BC541F0007B4667 /* KakaoMapsSDK-SPM */; };
 		19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BA2BC5993F007B4667 /* BaseViewController.swift */; };
 		19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BC2BC599CB007B4667 /* ContainerViewController.swift */; };
+		19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BE2BC63725007B4667 /* MapPointViewSample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,7 @@
 		1996CE942BC3E39000BB6571 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		19D322BA2BC5993F007B4667 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		19D322BC2BC599CB007B4667 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		19D322BE2BC63725007B4667 /* MapPointViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPointViewSample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */,
 				195662CB2BC3833C0092B4E0 /* AppDelegate.swift */,
 				19D322BA2BC5993F007B4667 /* BaseViewController.swift */,
+				19D322BE2BC63725007B4667 /* MapPointViewSample.swift */,
 				19D322BC2BC599CB007B4667 /* ContainerViewController.swift */,
 				195662D12BC3833C0092B4E0 /* Main.storyboard */,
 				195662D42BC3833E0092B4E0 /* Assets.xcassets */,
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */,
+				19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */,
 				195662CE2BC3833C0092B4E0 /* SceneDelegate.swift in Sources */,
 				19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */,
 				19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */,

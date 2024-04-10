@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Base View Controller-->
+        <!--Map Point View Sample-->
         <scene sceneID="FUP-bm-Vlu">
             <objects>
-                <viewController id="1mp-sz-Mg0" customClass="BaseViewController" customModule="BoongBoong" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1mp-sz-Mg0" customClass="MapPointViewSample" customModule="BoongBoong" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Oc-5h-gTp" customClass="KMViewContainer">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

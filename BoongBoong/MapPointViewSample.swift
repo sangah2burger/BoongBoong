@@ -14,13 +14,14 @@ class MapPointViewSample : BaseViewController {
     
     override func addViews() {
         let defaultPosition : MapPoint = MapPoint(longitude: 127.108678, latitude : 37.402001)
-        let mapviewInfo : MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 14)
+        let mapviewInfo : MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 10)
         
         mapController?.addView(mapviewInfo)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        manager.delegate = self
     }
     
     override func viewInit(viewName: String) {
@@ -53,12 +54,16 @@ class MapPointViewSample : BaseViewController {
             let poiOption = PoiOptions(styleID: "customStyle1")
             poiOption.rank = 0
 
-            let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: 127.108678, latitude: 37.402001))
+            let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: 127, latitude: 37))
             // PoiBadge를 생성하여 POI에 추가한다.
             let badge = PoiBadge(badgeID: "noti", image: UIImage(named: "noti.png")!, offset: CGPoint(x: 0.1, y: 0.1), zOrder: 1)
             poi1?.addBadge(badge)
             poi1?.show()
             poi1?.showBadge(badgeID: "noti")
+            guard let longtitude = super.manager.location?.coordinate.longitude,
+                  let latitude = super.manager.location?.coordinate.latitude else { return }
+            var mapPoint = MapPoint(longitude: longtitude, latitude: latitude)
+            poi1?.moveAt(mapPoint, duration: 5000)
             
         }
 }

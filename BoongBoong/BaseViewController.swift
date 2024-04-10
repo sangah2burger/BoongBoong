@@ -9,7 +9,7 @@ import UIKit
 import KakaoMapsSDK
 import CoreLocation
 
-class BaseViewController: UIViewController, MapControllerDelegate, CLLocationManagerDelegate {
+class BaseViewController: UIViewController, MapControllerDelegate {
     var manager = CLLocationManager()
     var mapContainer: KMViewContainer?
     var mapController: KMController?
@@ -195,7 +195,7 @@ class BaseViewController: UIViewController, MapControllerDelegate, CLLocationMan
 
 }
 
-extension ViewController : CLLocationManagerDelegate {
+extension BaseViewController : CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         manager.startUpdatingLocation()
     }
@@ -209,5 +209,4 @@ extension ViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
         print("error\(error.localizedDescription)")
     }
-    
 }

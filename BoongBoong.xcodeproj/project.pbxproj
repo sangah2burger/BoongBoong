@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195662CB2BC3833C0092B4E0 /* AppDelegate.swift */; };
 		195662CE2BC3833C0092B4E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */; };
-		195662D02BC3833C0092B4E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195662CF2BC3833C0092B4E0 /* ViewController.swift */; };
 		195662D32BC3833C0092B4E0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 195662D22BC3833C0092B4E0 /* Base */; };
 		195662D52BC3833E0092B4E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 195662D42BC3833E0092B4E0 /* Assets.xcassets */; };
 		195662D82BC3833E0092B4E0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 195662D72BC3833E0092B4E0 /* Base */; };
 		1979BAC72BC3936B009D8269 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1979BAC62BC3936B009D8269 /* Kingfisher */; };
 		1979BACA2BC39373009D8269 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1979BAC92BC39373009D8269 /* Alamofire */; };
 		1979BACC2BC39373009D8269 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 1979BACB2BC39373009D8269 /* AlamofireDynamic */; };
-		1996CE912BC3D6D300BB6571 /* TMapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1996CE8F2BC3D6CD00BB6571 /* TMapSDK.framework */; };
-		1996CE922BC3D6D300BB6571 /* TMapSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1996CE8F2BC3D6CD00BB6571 /* TMapSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		19D322B52BC541F0007B4667 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 19D322B42BC541F0007B4667 /* KakaoMapsSDK-SPM */; };
+		19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BA2BC5993F007B4667 /* BaseViewController.swift */; };
+		19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BC2BC599CB007B4667 /* ContainerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,7 +27,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1996CE922BC3D6D300BB6571 /* TMapSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,14 +36,14 @@
 /* Begin PBXFileReference section */
 		195662CB2BC3833C0092B4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		195662CF2BC3833C0092B4E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		195662D22BC3833C0092B4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		195662D42BC3833E0092B4E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		195662D72BC3833E0092B4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		195662D92BC3833E0092B4E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1979BB102BC398EE009D8269 /* BoongBoong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoongBoong.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1996CE8F2BC3D6CD00BB6571 /* TMapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TMapSDK.framework; sourceTree = "<group>"; };
 		1996CE942BC3E39000BB6571 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		19D322BA2BC5993F007B4667 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		19D322BC2BC599CB007B4667 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +52,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1979BAC72BC3936B009D8269 /* Kingfisher in Frameworks */,
-				1996CE912BC3D6D300BB6571 /* TMapSDK.framework in Frameworks */,
 				1979BACC2BC39373009D8269 /* AlamofireDynamic in Frameworks */,
 				1979BACA2BC39373009D8269 /* Alamofire in Frameworks */,
+				19D322B52BC541F0007B4667 /* KakaoMapsSDK-SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,14 +73,14 @@
 		195662CA2BC3833C0092B4E0 /* BoongBoong */ = {
 			isa = PBXGroup;
 			children = (
-				195662CB2BC3833C0092B4E0 /* AppDelegate.swift */,
 				195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */,
-				195662CF2BC3833C0092B4E0 /* ViewController.swift */,
+				195662CB2BC3833C0092B4E0 /* AppDelegate.swift */,
+				19D322BA2BC5993F007B4667 /* BaseViewController.swift */,
+				19D322BC2BC599CB007B4667 /* ContainerViewController.swift */,
 				195662D12BC3833C0092B4E0 /* Main.storyboard */,
 				195662D42BC3833E0092B4E0 /* Assets.xcassets */,
 				195662D62BC3833E0092B4E0 /* LaunchScreen.storyboard */,
 				195662D92BC3833E0092B4E0 /* Info.plist */,
-				1996CE8F2BC3D6CD00BB6571 /* TMapSDK.framework */,
 			);
 			path = BoongBoong;
 			sourceTree = "<group>";
@@ -107,6 +106,7 @@
 				1979BAC62BC3936B009D8269 /* Kingfisher */,
 				1979BAC92BC39373009D8269 /* Alamofire */,
 				1979BACB2BC39373009D8269 /* AlamofireDynamic */,
+				19D322B42BC541F0007B4667 /* KakaoMapsSDK-SPM */,
 			);
 			productName = BoongBoong;
 			productReference = 1979BB102BC398EE009D8269 /* BoongBoong.app */;
@@ -139,6 +139,7 @@
 			packageReferences = (
 				1979BAC52BC3936B009D8269 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				1979BAC82BC39373009D8269 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				19D322B32BC541F0007B4667 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 			);
 			productRefGroup = 195662BF2BC3833C0092B4E0;
 			projectDirPath = "";
@@ -167,9 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				195662D02BC3833C0092B4E0 /* ViewController.swift in Sources */,
 				195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */,
 				195662CE2BC3833C0092B4E0 /* SceneDelegate.swift in Sources */,
+				19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */,
+				19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +200,7 @@
 		195662DA2BC3833E0092B4E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -233,7 +236,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = x86_64;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -263,6 +266,7 @@
 		195662DB2BC3833E0092B4E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -298,7 +302,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				EXCLUDED_ARCHS = arm64;
+				EXCLUDED_ARCHS = x86_64;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -322,6 +326,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1996CE942BC3E39000BB6571 /* Config.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -370,6 +375,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1996CE942BC3E39000BB6571 /* Config.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +460,14 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		19D322B32BC541F0007B4667 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -471,6 +485,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1979BAC82BC39373009D8269 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = AlamofireDynamic;
+		};
+		19D322B42BC541F0007B4667 /* KakaoMapsSDK-SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 19D322B32BC541F0007B4667 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
+			productName = "KakaoMapsSDK-SPM";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

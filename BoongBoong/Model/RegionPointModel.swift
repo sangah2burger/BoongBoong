@@ -9,15 +9,15 @@ import Foundation
 
 // MARK: - Welcome
 struct RegionPointModel: Codable {
-    var documents: [Document]
-    let meta: Meta
+    var regionDocuments: [RegionDocument]
+    let regionMeta: RegionMeta
 }
 
 // MARK: - Document
-struct Document: Codable {
+struct RegionDocument: Codable {
     let address: Address
     let addressName, addressType: String
-    let roadAddress: JSONNull?
+    let roadAddress: RegionJSONNull?
     let x, y: String
 
     enum CodingKeys: String, CodingKey {
@@ -51,7 +51,7 @@ struct Address: Codable {
 }
 
 // MARK: - Meta
-struct Meta: Codable {
+struct RegionMeta: Codable {
     let isEnd: Bool
     let pageableCount, totalCount: Int
 
@@ -64,9 +64,9 @@ struct Meta: Codable {
 
 // MARK: - Encode/decode helpers
 
-class JSONNull: Codable, Hashable {
+class RegionJSONNull: Codable, Hashable {
 
-    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
+    public static func == (lhs: RegionJSONNull, rhs: RegionJSONNull) -> Bool {
         return true
     }
 
@@ -79,7 +79,7 @@ class JSONNull: Codable, Hashable {
     public required init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+            throw DecodingError.typeMismatch(RegionJSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
         }
     }
 

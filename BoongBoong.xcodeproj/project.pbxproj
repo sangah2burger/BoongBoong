@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		194FC2652BC765AC004DE27C /* OilAvgPriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC2642BC765AC004DE27C /* OilAvgPriceModel.swift */; };
+		194FC2672BC7AB57004DE27C /* CategoryPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC2662BC7AB57004DE27C /* CategoryPointModel.swift */; };
+		194FC28B2BC7EC60004DE27C /* KeywordPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC28A2BC7EC60004DE27C /* KeywordPointModel.swift */; };
 		195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195662CB2BC3833C0092B4E0 /* AppDelegate.swift */; };
 		195662CE2BC3833C0092B4E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */; };
 		195662D32BC3833C0092B4E0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 195662D22BC3833C0092B4E0 /* Base */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		194FC2642BC765AC004DE27C /* OilAvgPriceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OilAvgPriceModel.swift; sourceTree = "<group>"; };
+		194FC2662BC7AB57004DE27C /* CategoryPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPointModel.swift; sourceTree = "<group>"; };
+		194FC28A2BC7EC60004DE27C /* KeywordPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPointModel.swift; sourceTree = "<group>"; };
 		195662CB2BC3833C0092B4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		195662D22BC3833C0092B4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				55FFCBBF2BC6876000012259 /* RegionPointModel.swift */,
+				194FC28A2BC7EC60004DE27C /* KeywordPointModel.swift */,
+				194FC2662BC7AB57004DE27C /* CategoryPointModel.swift */,
 				194FC2642BC765AC004DE27C /* OilAvgPriceModel.swift */,
 			);
 			path = Model;
@@ -202,9 +208,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				55FFCBC02BC6876700012259 /* RegionPointModel.swift in Sources */,
+				194FC28B2BC7EC60004DE27C /* KeywordPointModel.swift in Sources */,
 				195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */,
 				19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */,
 				195662CE2BC3833C0092B4E0 /* SceneDelegate.swift in Sources */,
+				194FC2672BC7AB57004DE27C /* CategoryPointModel.swift in Sources */,
 				194FC2652BC765AC004DE27C /* OilAvgPriceModel.swift in Sources */,
 				19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */,
 				19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */,

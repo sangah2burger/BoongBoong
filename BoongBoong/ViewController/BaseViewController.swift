@@ -32,7 +32,6 @@ class BaseViewController: UIViewController, MapControllerDelegate {
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         manager.desiredAccuracy = kCLLocationAccuracyBest
 //        manager.allowsBackgroundLocationUpdates = true
@@ -191,8 +190,6 @@ class BaseViewController: UIViewController, MapControllerDelegate {
                                         toastLabel.removeFromSuperview()
                                     })
     }
-    
-
 }
 
 extension BaseViewController : CLLocationManagerDelegate {

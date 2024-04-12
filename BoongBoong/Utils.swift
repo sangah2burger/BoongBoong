@@ -68,5 +68,23 @@ extension UIViewController {
             }
         }
     }
+    func convertCoordinateBySystem(x:Double, y:Double, inputCoord:String, ouputCoord:String, restKey:String){
+            let endPoint = "https://dapi.kakao.com/v2/local/geo/transcoord"
+            let params: Parameters = ["x": x,"y": y, "input_coord" : inputCoord, "output_coord": ouputCoord]
+            let headers: HTTPHeaders = ["Authorization":"KakaoAK \(restKey)"]
+            AF.request(endPoint, method: .get, parameters: params, headers: headers).responseDecodable(of: CoordModel.self) { response in
+                print(response)
+                switch response.result {
+                case .success(let result) :
+                    coord = result
+                    guard let coord else {return}
+                    print(x,y)
+                    print(coord.documents[0].x, coord.documents[0].y)
+                case .failure(let error) :
+                    print("에러 발생 : \(error.localizedDescription)")
+                }
+            }
+        }
+
 }
 

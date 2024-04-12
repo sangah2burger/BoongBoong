@@ -16,6 +16,8 @@ var rangeOilBank : RangeOilBankModel?
 var oilAvgPrice : OilAvgPriceModel?
 var infoOilBank : InfoOilBankModel?
 var currentLocation : (Double, Double)?
+var coord: CoordModel?
+
 
 class MapPointViewSample : BaseViewController {
     let restKey = Bundle.main.restKey!
@@ -36,7 +38,7 @@ class MapPointViewSample : BaseViewController {
         searchOilbank(oilKey: oilKey, prodcd: "B027")
         searchOilAvgPrice(oilKey: oilKey)
         searchOilBankInfo(uniId: "A0000520", oilKey: oilKey)
-
+        convertCoordinateBySystem(x:299017.76990 , y: 550893.57210, inputCoord: "KTM", ouputCoord: "WGS84", restKey: restKey)
     }
     
     override func viewInit(viewName: String) {

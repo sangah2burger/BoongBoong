@@ -25,6 +25,7 @@
 		19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BA2BC5993F007B4667 /* BaseViewController.swift */; };
 		19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BC2BC599CB007B4667 /* ContainerViewController.swift */; };
 		19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BE2BC63725007B4667 /* MapPointViewSample.swift */; };
+		556F4DEE2BC94603002519EE /* CoordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F4DED2BC94603002519EE /* CoordModel.swift */; };
 		55FFCBC02BC6876700012259 /* RegionPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFCBBF2BC6876000012259 /* RegionPointModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		19D322BA2BC5993F007B4667 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		19D322BC2BC599CB007B4667 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		19D322BE2BC63725007B4667 /* MapPointViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPointViewSample.swift; sourceTree = "<group>"; };
+		556F4DED2BC94603002519EE /* CoordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordModel.swift; sourceTree = "<group>"; };
 		55FFCBBF2BC6876000012259 /* RegionPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionPointModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 				194FC2642BC765AC004DE27C /* OilAvgPriceModel.swift */,
 				194FC28E2BC8BEBC004DE27C /* RangeOilBankModel.swift */,
 				194FC2922BC8DCF1004DE27C /* InfoOilBankModel.swift */,
+				556F4DED2BC94603002519EE /* CoordModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55FFCBC02BC6876700012259 /* RegionPointModel.swift in Sources */,
+				556F4DEE2BC94603002519EE /* CoordModel.swift in Sources */,
 				194FC28B2BC7EC60004DE27C /* KeywordPointModel.swift in Sources */,
 				195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */,
 				19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */,

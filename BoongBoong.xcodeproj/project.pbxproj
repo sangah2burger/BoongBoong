@@ -26,6 +26,7 @@
 		19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BC2BC599CB007B4667 /* ContainerViewController.swift */; };
 		19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BE2BC63725007B4667 /* MapPointViewSample.swift */; };
 		556F4DEE2BC94603002519EE /* CoordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F4DED2BC94603002519EE /* CoordModel.swift */; };
+		556F4DF02BC94938002519EE /* OilBankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */; };
 		55FFCBC02BC6876700012259 /* RegionPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFCBBF2BC6876000012259 /* RegionPointModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		19D322BC2BC599CB007B4667 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		19D322BE2BC63725007B4667 /* MapPointViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPointViewSample.swift; sourceTree = "<group>"; };
 		556F4DED2BC94603002519EE /* CoordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordModel.swift; sourceTree = "<group>"; };
+		556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OilBankDetailViewController.swift; sourceTree = "<group>"; };
 		55FFCBBF2BC6876000012259 /* RegionPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionPointModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 				55FFCBC22BC6878500012259 /* Delegate */,
 				55FFCBC12BC6877900012259 /* ViewController */,
 				195662D12BC3833C0092B4E0 /* Main.storyboard */,
+				556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */,
 				195662D42BC3833E0092B4E0 /* Assets.xcassets */,
 				195662D62BC3833E0092B4E0 /* LaunchScreen.storyboard */,
 				195662D92BC3833E0092B4E0 /* Info.plist */,
@@ -229,6 +232,7 @@
 				194FC28D2BC8B726004DE27C /* Utils.swift in Sources */,
 				194FC2672BC7AB57004DE27C /* CategoryPointModel.swift in Sources */,
 				194FC2652BC765AC004DE27C /* OilAvgPriceModel.swift in Sources */,
+				556F4DF02BC94938002519EE /* OilBankDetailViewController.swift in Sources */,
 				19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */,
 				194FC2932BC8DCF1004DE27C /* InfoOilBankModel.swift in Sources */,
 				19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */,

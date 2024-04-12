@@ -44,12 +44,10 @@ extension UIViewController {
         let endPoint = "http://www.opinet.co.kr/api/avgAllPrice.do"
         let params : Parameters = ["code" : "\(oilKey)", "out" : "json"]
         AF.request(endPoint, method: .get, parameters: params).responseDecodable(of: OilAvgPriceModel.self) { response in
-            print(response)
             switch response.result {
             case .success(let result) :
                 oilAvgPrice = result
                 guard let oilAvgPrice = oilAvgPrice else { return }
-                print(oilAvgPrice.oilAvgresult.oilPrice.self)
             case .failure(let error) :
                 print("실패 : \(error.localizedDescription)")
                 
@@ -61,12 +59,10 @@ extension UIViewController {
         let endPoint = "http://www.opinet.co.kr/api/detailById.do"
         let params : Parameters = ["code":"\(oilKey)", "out":"json","id":uniId ]
         AF.request(endPoint, method: .get, parameters: params).responseDecodable(of: InfoOilBankModel.self) { response in
-            print(response)
             switch response.result {
             case .success(let result) :
                 infoOilBank = result
                 guard let infoOilBank = infoOilBank else { return }
-                print(infoOilBank.infoOilBankResult.infoOilBank.self)
             case .failure(let error) :
                 print("실패 : \(error.localizedDescription)")
             }

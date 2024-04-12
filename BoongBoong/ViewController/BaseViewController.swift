@@ -198,11 +198,9 @@ extension BaseViewController : CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        Poi.show()
-        
-        print("\(location.coordinate.latitude)")
-        print("\(location.coordinate.longitude)")
+        guard let location = locations.last else { return }
+        currentLocation?.0 = location.coordinate.latitude
+        currentLocation?.1 = location.coordinate.longitude
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {

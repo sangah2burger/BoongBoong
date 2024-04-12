@@ -11,6 +11,11 @@ import Foundation
 struct RegionPointModel: Codable {
     var regionDocuments: [RegionDocument]
     let regionMeta: RegionMeta
+    
+    enum CodingKeys: String, CodingKey {
+        case regionDocuments = "documents"
+        case regionMeta = "meta"
+    }
 }
 
 // MARK: - Document

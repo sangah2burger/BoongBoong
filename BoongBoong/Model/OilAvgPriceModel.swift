@@ -9,31 +9,31 @@ import Foundation
 
 // MARK: - Welcome
 struct OilAvgPriceModel: Codable {
-    let result: Result
+    let oilAvgresult: OilAvgResult
 
     enum CodingKeys: String, CodingKey {
-        case result = "RESULT"
+        case oilAvgresult = "RESULT"
     }
 }
 
 // MARK: - Result
-struct Result: Codable {
-    let oil: [Oil]
+struct OilAvgResult: Codable {
+    let oilPrice: [OilPrice]
 
     enum CodingKeys: String, CodingKey {
-        case oil = "OIL"
+        case oilPrice = "OIL"
     }
 }
 
 // MARK: - Oil
-struct Oil: Codable {
-    let tradeDt, prodnm, price: String
+struct OilPrice: Codable {
+    let tradeDt, prodnm, avgPrice: String
     let diff: String
 
     enum CodingKeys: String, CodingKey {
         case tradeDt = "TRADE_DT"
         case prodnm = "PRODNM"
-        case price = "PRICE"
+        case avgPrice = "PRICE"
         case diff = "DIFF"
     }
 }

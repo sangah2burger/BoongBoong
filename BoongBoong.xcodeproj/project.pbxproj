@@ -10,6 +10,9 @@
 		194FC2652BC765AC004DE27C /* OilAvgPriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC2642BC765AC004DE27C /* OilAvgPriceModel.swift */; };
 		194FC2672BC7AB57004DE27C /* CategoryPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC2662BC7AB57004DE27C /* CategoryPointModel.swift */; };
 		194FC28B2BC7EC60004DE27C /* KeywordPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC28A2BC7EC60004DE27C /* KeywordPointModel.swift */; };
+		194FC28D2BC8B726004DE27C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC28C2BC8B726004DE27C /* Utils.swift */; };
+		194FC28F2BC8BEBC004DE27C /* RangeOilBankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC28E2BC8BEBC004DE27C /* RangeOilBankModel.swift */; };
+		194FC2932BC8DCF1004DE27C /* InfoOilBankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194FC2922BC8DCF1004DE27C /* InfoOilBankModel.swift */; };
 		195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195662CB2BC3833C0092B4E0 /* AppDelegate.swift */; };
 		195662CE2BC3833C0092B4E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */; };
 		195662D32BC3833C0092B4E0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 195662D22BC3833C0092B4E0 /* Base */; };
@@ -42,6 +45,9 @@
 		194FC2642BC765AC004DE27C /* OilAvgPriceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OilAvgPriceModel.swift; sourceTree = "<group>"; };
 		194FC2662BC7AB57004DE27C /* CategoryPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPointModel.swift; sourceTree = "<group>"; };
 		194FC28A2BC7EC60004DE27C /* KeywordPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPointModel.swift; sourceTree = "<group>"; };
+		194FC28C2BC8B726004DE27C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		194FC28E2BC8BEBC004DE27C /* RangeOilBankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeOilBankModel.swift; sourceTree = "<group>"; };
+		194FC2922BC8DCF1004DE27C /* InfoOilBankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOilBankModel.swift; sourceTree = "<group>"; };
 		195662CB2BC3833C0092B4E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		195662CD2BC3833C0092B4E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		195662D22BC3833C0092B4E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -83,6 +89,7 @@
 		195662CA2BC3833C0092B4E0 /* BoongBoong */ = {
 			isa = PBXGroup;
 			children = (
+				194FC28C2BC8B726004DE27C /* Utils.swift */,
 				55FFCBC32BC6878C00012259 /* Model */,
 				55FFCBC22BC6878500012259 /* Delegate */,
 				55FFCBC12BC6877900012259 /* ViewController */,
@@ -120,6 +127,8 @@
 				194FC28A2BC7EC60004DE27C /* KeywordPointModel.swift */,
 				194FC2662BC7AB57004DE27C /* CategoryPointModel.swift */,
 				194FC2642BC765AC004DE27C /* OilAvgPriceModel.swift */,
+				194FC28E2BC8BEBC004DE27C /* RangeOilBankModel.swift */,
+				194FC2922BC8DCF1004DE27C /* InfoOilBankModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,9 +221,12 @@
 				195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */,
 				19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */,
 				195662CE2BC3833C0092B4E0 /* SceneDelegate.swift in Sources */,
+				194FC28F2BC8BEBC004DE27C /* RangeOilBankModel.swift in Sources */,
+				194FC28D2BC8B726004DE27C /* Utils.swift in Sources */,
 				194FC2672BC7AB57004DE27C /* CategoryPointModel.swift in Sources */,
 				194FC2652BC765AC004DE27C /* OilAvgPriceModel.swift in Sources */,
 				19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */,
+				194FC2932BC8DCF1004DE27C /* InfoOilBankModel.swift in Sources */,
 				19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,10 +7,8 @@
 
 import UIKit
 import KakaoMapsSDK
-import CoreLocation
 
 class BaseViewController: UIViewController, MapControllerDelegate {
-    var manager = CLLocationManager()
     var mapContainer: KMViewContainer?
     var mapController: KMController?
     var _observerAdded: Bool
@@ -33,12 +31,6 @@ class BaseViewController: UIViewController, MapControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-//        manager.allowsBackgroundLocationUpdates = true
-        manager.requestWhenInUseAuthorization()
-        manager.requestAlwaysAuthorization()
-        manager.startUpdatingLocation()
-        manager.delegate = self
         
         mapContainer = self.view as? KMViewContainer
         
@@ -192,18 +184,4 @@ class BaseViewController: UIViewController, MapControllerDelegate {
     }
 }
 
-extension BaseViewController : CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        manager.startUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        currentLocation?.0 = location.coordinate.latitude
-        currentLocation?.1 = location.coordinate.longitude
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
-        print("error\(error.localizedDescription)")
-    }
-}
+

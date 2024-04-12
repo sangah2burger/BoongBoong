@@ -98,7 +98,6 @@
 				55FFCBC22BC6878500012259 /* Delegate */,
 				55FFCBC12BC6877900012259 /* ViewController */,
 				195662D12BC3833C0092B4E0 /* Main.storyboard */,
-				556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */,
 				195662D42BC3833E0092B4E0 /* Assets.xcassets */,
 				195662D62BC3833E0092B4E0 /* LaunchScreen.storyboard */,
 				195662D92BC3833E0092B4E0 /* Info.plist */,
@@ -112,6 +111,7 @@
 				19D322BA2BC5993F007B4667 /* BaseViewController.swift */,
 				19D322BE2BC63725007B4667 /* MapPointViewSample.swift */,
 				19D322BC2BC599CB007B4667 /* ContainerViewController.swift */,
+				556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

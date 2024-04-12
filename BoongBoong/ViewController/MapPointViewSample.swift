@@ -22,6 +22,7 @@ var coord: CoordModel?
 class MapPointViewSample : BaseViewController {
     let restKey = Bundle.main.restKey!
     let oilKey = Bundle.main.oilKey!
+    var locationManager: CLLocationManager?
     
     override func addViews() {
         let defaultPosition : MapPoint = MapPoint(longitude: 127.108678, latitude : 37.402001)
@@ -33,7 +34,15 @@ class MapPointViewSample : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.delegate = self
+        locationManager = CLLocationManager()
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+//        manager.allowsBackgroundLocationUpdates = true
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.requestAlwaysAuthorization()
+        //locationManager?.startUpdatingLocation()
+        locationManager?.delegate = self
+        
+        
         search(query: "학동", restKey: restKey)
         searchOilbank(oilKey: oilKey, prodcd: "B027")
         searchOilAvgPrice(oilKey: oilKey)
@@ -45,14 +54,16 @@ class MapPointViewSample : BaseViewController {
         print("OK")
         createLabelLayer()
         createPoiStyle()
-        createCurrentPoiStyle()
+        //createCurrentPoiStyle()
         
         createPois()
-        createCurrentPois()
+        //createCurrentPois()
         
         showBasicGUIs()
         createSpriteGUI()
         createInfoWindow()
+        locationManager?.startUpdatingLocation()
+        
     }
     
     func createLabelLayer() {
@@ -75,7 +86,7 @@ class MapPointViewSample : BaseViewController {
         let view = mapController?.getView("mapview") as! KakaoMap
         let manager = view.getLabelManager()
         let layer = manager.getLabelLayer(layerID: "PoiLayer")
-        let poiOption = PoiOptions(styleID: "customStyle1")
+        let poiOption = PoiOptions(styleID: "customStyle1",poiID: "poi1")
         poiOption.rank = 0
         
         let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: 127, latitude: 37))
@@ -84,46 +95,36 @@ class MapPointViewSample : BaseViewController {
         poi1?.addBadge(badge)
         poi1?.show()
         poi1?.showBadge(badgeID: "noti")
-        guard let longtitude = super.manager.location?.coordinate.longitude,
-              let latitude = super.manager.location?.coordinate.latitude else { return }
-        let mapPoint = MapPoint(longitude: longtitude, latitude: latitude)
-        poi1?.moveAt(mapPoint, duration: 5000)
-        
+        poi1?.moveAt(MapPoint(longitude: 127, latitude: 38), duration: 5000)
     }
     
-    func createCurrentPoiStyle() {
-        let view = mapController?.getView("mapview") as! KakaoMap
-        let manager = view.getLabelManager()
-        let iconStyle = PoiIconStyle(symbol: UIImage(named: "pin_green.png"), anchorPoint: CGPoint(x: 0.0, y: 0.5))
-        let perLevelStyle = PerLevelPoiStyle(iconStyle: iconStyle, level: 0)
-        let poiStyle = PoiStyle(styleID: "customStyle2", styles: [perLevelStyle])
-        manager.addPoiStyle(poiStyle)
-    }
-    
-    func createCurrentPois() {
-        let view = mapController?.getView("mapview") as! KakaoMap
-        let manager = view.getLabelManager()
-        let layer = manager.getLabelLayer(layerID: "PoiLayer")
-        let poiOption = PoiOptions(styleID: "customStyle2",poiID: "poi1")
-        poiOption.rank = 0
-        
-        guard let currentX = super.manager.location?.coordinate.longitude,
-              let currentY = super.manager.location?.coordinate.latitude else { return }
-        
-        let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: currentX, latitude: currentY))
-        // PoiBadge를 생성하여 POI에 추가한다.
-        let badge = PoiBadge(badgeID: "noti", image: UIImage(named: "noti.png")!, offset: CGPoint(x: 0.1, y: 0.1), zOrder: 1)
-        poi1?.addBadge(badge)
-        poi1?.show()
-        poi1?.showBadge(badgeID: "noti")
-        if let currentLocation = currentLocation {
-            let mapPoint = MapPoint(longitude: currentLocation.0, latitude: currentLocation.1)
-            poi1?.moveAt(mapPoint, duration: 5000)
-            print(mapPoint)
-            
-        }
-
-    }
+//    func createCurrentPoiStyle() {
+//        let view = mapController?.getView("mapview") as! KakaoMap
+//        let manager = view.getLabelManager()
+//        let iconStyle = PoiIconStyle(symbol: UIImage(named: "pin_green.png"), anchorPoint: CGPoint(x: 0.0, y: 0.5))
+//        let perLevelStyle = PerLevelPoiStyle(iconStyle: iconStyle, level: 0)
+//        let poiStyle = PoiStyle(styleID: "customStyle2", styles: [perLevelStyle])
+//        manager.addPoiStyle(poiStyle)
+//    }
+//    
+//    func createCurrentPois() {
+//        let view = mapController?.getView("mapview") as! KakaoMap
+//        let manager = view.getLabelManager()
+//        let layer = manager.getLabelLayer(layerID: "PoiLayer")
+//        let poiOption = PoiOptions(styleID: "customStyle2",poiID: "poi1")
+//        poiOption.rank = 0
+//        
+//        guard let currentX = CLLocationManager().location?.coordinate.longitude,
+//              let currentY = CLLocationManager().location?.coordinate.latitude else { return }
+//        
+//        let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: currentX, latitude: currentY))
+//        // PoiBadge를 생성하여 POI에 추가한다.
+//        let badge = PoiBadge(badgeID: "noti", image: UIImage(named: "noti.png")!, offset: CGPoint(x: 0.1, y: 0.1), zOrder: 1)
+//        poi1?.addBadge(badge)
+//        poi1?.show()
+//        poi1?.showBadge(badgeID: "noti")
+//
+//    }
     
     func showBasicGUIs() {
         let view = mapController?.getView("mapview") as! KakaoMap
@@ -211,5 +212,28 @@ extension MapPointViewSample : GuiEventDelegate {
             //do something
             
         }
+    }
+}
+
+
+extension MapPointViewSample : CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        //manager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations[0])
+        guard let location = locations.last else { return }
+        let view = mapController?.getView("mapview") as! KakaoMap
+        let manager = view.getLabelManager()
+        let layer = manager.getLabelLayer(layerID: "PoiLayer")
+        let currentPOI = layer?.getPoi(poiID: "poi1")
+        print("바뀜")
+        currentPOI?.moveAt(MapPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude), duration: 5000)
+
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print("error\(error.localizedDescription)")
     }
 }

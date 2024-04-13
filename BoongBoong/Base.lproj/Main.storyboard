@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bpd-BY-Zql" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131" y="-98"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-98.591549295774655"/>
         </scene>
         <!--Oil Bank Detail View Controller-->
         <scene sceneID="w8U-v5-WoV">

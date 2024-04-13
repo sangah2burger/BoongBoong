@@ -15,7 +15,6 @@ var regionPoint : RegionPointModel?
 var rangeOilBank : RangeOilBankModel?
 var oilAvgPrice : OilAvgPriceModel?
 var infoOilBank : InfoOilBankModel?
-var currentLocation : (Double, Double)?
 var coord: CoordModel?
 
 
@@ -43,11 +42,13 @@ class MapPointViewSample : BaseViewController {
         locationManager?.delegate = self
         
         
-        search(query: "학동", restKey: restKey)
-        searchOilbank(oilKey: oilKey, prodcd: "B027")
-        searchOilAvgPrice(oilKey: oilKey)
-        searchOilBankInfo(uniId: "A0000520", oilKey: oilKey)
-        convertCoordinateBySystem(x:299017.76990 , y: 550893.57210, inputCoord: "KTM", ouputCoord: "WGS84", restKey: restKey)
+//        searchXYWithAddressName(query: "학동", restKey: restKey)
+//        searchOilBankWithXY(oilKey: oilKey, prodcd: "B027")
+//        dump(rangeOilBank?.rangeOilBankResult.rangeOilBank[0])
+//        searchOilAvgPrice(oilKey: oilKey)
+//        searchOilBankInfo(uniId: "A0000520", oilKey: oilKey)
+//        convertCoordinateBySystem(x:299017.76990 , y: 550893.57210, inputCoord: "KTM", ouputCoord: "WGS84", restKey: restKey)
+        searchOilBankBoundary()
     }
     
     override func viewInit(viewName: String) {
@@ -148,7 +149,7 @@ extension MapPointViewSample : GuiEventDelegate {
         spriteGui.position = CGPoint(x: 50, y: 50)
         
         
-        let button = GuiButton("button1")
+        let button = GuiButton("currentLocation")
         button.image = UIImage(named: "track_location_btn.png")
         
         spriteGui.addChild(button)
@@ -174,7 +175,7 @@ extension MapPointViewSample : GuiEventDelegate {
         //bodyImage의 child로 들어갈 layout.
         let layout: GuiLayout = GuiLayout("layout")
         layout.arrangement = .horizontal    //가로배치
-        let button1: GuiButton = GuiButton("button1")
+        let button1: GuiButton = GuiButton("currentLocation")
         button1.image = UIImage(named: "noti.png")!
         
         let text = GuiText("text")
@@ -211,8 +212,55 @@ extension MapPointViewSample : GuiEventDelegate {
         if componentName == "button" {
             //do something
             
+        } else if componentName == "currentLocation" {
+            moveCameraToCurrentLocation()
         }
     }
+    
+    func searchOilBankBoundary() {
+        searchXYWithAddressName(query: "화곡동", size: 10, page: 1, restKey: restKey) { [unowned self] doc in
+            guard let x = Double(doc.x), let y = Double(doc.y) else { return }
+            convertCoordinateBySystem(x: x, y: y, inputCoord: "WGS84", ouputCoord: "KTM", restKey: self.restKey) { [unowned self] doc in
+                searchOilBankWithXY(katecX: doc.x, katecY: doc.y, radius: 1000, oilKey: self.oilKey) { [unowned self] oilBanks in
+                    let view = self.mapController?.getView("mapview") as! KakaoMap
+                    let manager = view.getLabelManager()
+                    let layerOption = LabelLayerOptions(layerID: "PoiLayer", competitionType: .none, competitionUnit: .symbolFirst, orderType: .rank, zOrder: 10001)
+                    let _ = manager.addLabelLayer(option: layerOption)
+                    
+                    let iconStyle = PoiIconStyle(symbol: UIImage(named: "pin_red.png"), anchorPoint: CGPoint(x: 0.0, y: 0.5))
+                    let perLevelStyle = PerLevelPoiStyle(iconStyle: iconStyle, level: 0)
+                    let poiStyle = PoiStyle(styleID: "customStyle3", styles: [perLevelStyle])
+                    manager.addPoiStyle(poiStyle)
+                    
+                    let layer = manager.getLabelLayer(layerID: "PoiLayer")
+                    let poiOption = PoiOptions(styleID: "customStyle3")
+                    poiOption.rank = 0
+
+                    for oilBank in oilBanks {
+                        convertCoordinateBySystem(x: oilBank.gisXCoor, y: oilBank.gisYCoor, inputCoord: "KTM", ouputCoord: "WGS84", restKey: self.restKey) { doc in
+                            print(oilBank)
+                            print(doc.x, doc.y)
+                            guard let layer else { return }
+                            let poi1 = layer.addPoi(option: poiOption, at: MapPoint(longitude: doc.x, latitude: doc.y))
+                            guard let poi1 else { return }
+                            poi1.show()
+                            //poi1?.addPoiTappedEventHandler(target: <#T##U#>, handler: <#T##(U) -> (PoiInteractionEventParam) -> Void#>)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func moveCameraToCurrentLocation () {
+        guard let currentLoc = locationManager?.location?.coordinate else { return }
+        let view = mapController?.getView("mapview") as! KakaoMap
+        let cameraUpdate = CameraUpdate.make(target: MapPoint(longitude: currentLoc.longitude, latitude: currentLoc.latitude),  zoomLevel: 15 ,  mapView: view)
+        view.animateCamera(cameraUpdate: cameraUpdate, options: CameraAnimationOptions(autoElevation: false, consecutive: true, durationInMillis: 300))
+    }
+    
+    
 }
 
 
@@ -229,7 +277,7 @@ extension MapPointViewSample : CLLocationManagerDelegate {
         let layer = manager.getLabelLayer(layerID: "PoiLayer")
         let currentPOI = layer?.getPoi(poiID: "poi1")
         print("바뀜")
-        currentPOI?.moveAt(MapPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude), duration: 5000)
+        currentPOI?.moveAt(MapPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude), duration: 300)
 
     }
     

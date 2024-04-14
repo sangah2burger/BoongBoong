@@ -24,8 +24,8 @@ class MapPointViewSample : BaseViewController {
     var locationManager: CLLocationManager?
     
     override func addViews() {
-        let defaultPosition : MapPoint = MapPoint(longitude: 127.108678, latitude : 37.402001)
-        let mapviewInfo : MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 10)
+        let defaultPosition : MapPoint = MapPoint(longitude: 126.8461, latitude : 37.5358)
+        let mapviewInfo : MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 15)
         
         mapController?.addView(mapviewInfo)
         
@@ -81,6 +81,7 @@ class MapPointViewSample : BaseViewController {
         let perLevelStyle = PerLevelPoiStyle(iconStyle: iconStyle, level: 0)
         let poiStyle = PoiStyle(styleID: "customStyle1", styles: [perLevelStyle])
         manager.addPoiStyle(poiStyle)
+        view.poiScale = .small
     }
     
     func createPois() {
@@ -259,8 +260,6 @@ extension MapPointViewSample : GuiEventDelegate {
         let cameraUpdate = CameraUpdate.make(target: MapPoint(longitude: currentLoc.longitude, latitude: currentLoc.latitude),  zoomLevel: 15 ,  mapView: view)
         view.animateCamera(cameraUpdate: cameraUpdate, options: CameraAnimationOptions(autoElevation: false, consecutive: true, durationInMillis: 300))
     }
-    
-    
 }
 
 

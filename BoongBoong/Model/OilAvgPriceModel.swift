@@ -27,11 +27,12 @@ struct OilAvgResult: Codable {
 
 // MARK: - Oil
 struct OilPrice: Codable {
-    let tradeDt, prodnm, avgPrice: String
+    let tradeDt,prodcd, prodnm, avgPrice: String
     let diff: String
 
     enum CodingKeys: String, CodingKey {
         case tradeDt = "TRADE_DT"
+        case prodcd = "PRODCD"
         case prodnm = "PRODNM"
         case avgPrice = "PRICE"
         case diff = "DIFF"

@@ -36,7 +36,7 @@ struct InfoOilBankList: Codable {
 
     enum CodingKeys: String, CodingKey {
         case uniID = "UNI_ID"
-        case pollDivCo = "POLL_DIV_CO"
+        case pollDivCo = "POLL_DIV_CO" //상표
         case gpollDivCo = "GPOLL_DIV_CO"
         case osNm = "OS_NM"
         case vanAdr = "VAN_ADR"
@@ -57,7 +57,7 @@ struct InfoOilBankList: Codable {
 // MARK: - OilPrice
 struct OilPriceOfOilBank: Codable {
     let prodcd: String
-    let price: Int
+    let price: Double
     let tradeDt, tradeTm: String
 
     enum CodingKeys: String, CodingKey {

@@ -27,26 +27,26 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
     @IBOutlet weak var lblAddr: UILabel!
     @IBOutlet weak var lblTel: UILabel!
     
-    var oilBankInfo : InfoOilBankList? = InfoOilBankList(uniID: "A0000520", pollDivCo: "SOL", gpollDivCo: "", osNm: "하이웨이주유소", vanAdr: "서울특별시 강서구 화곡동 1125", newAdr: "서울특별시 강서구 공항대로 432(화곡동)", tel: "02-2605-4000", siguncd: "0115", lpgYn: "N", maintYn: "N", carWashYn: "N", kpetroYn: "N", cvsYn: "Y", gisXCoor: 299017.76990, gisYCoor: 550893.57210,oilPrice: [OilPriceOfOilBank(prodcd: "B027", price: 1796, tradeDt: "20240412", tradeTm: "105931"),OilPriceOfOilBank(prodcd: "D047", price: 1681, tradeDt: "20240412", tradeTm: "105843"),OilPriceOfOilBank(prodcd: "B034", price: 1896, tradeDt: "20240412", tradeTm: "105940")])
+    var oilBankInfo : InfoOilBankList? = InfoOilBankList(uniID: "A0000520", pollDivCo: "SOL", gpollDivCo: "", osNm: "하이웨이주유소", vanAdr: "서울특별시 강서구 화곡동 1125", newAdr: "서울특별시 강서구 공항대로 432(화곡동)", tel: "02-2605-4000", siguncd: "0115", lpgYn: "N", maintYn: "Y", carWashYn: "Y", kpetroYn: "Y", cvsYn: "Y", gisXCoor: 299017.76990, gisYCoor: 550893.57210,oilPrice: [OilPriceOfOilBank(prodcd: "B027", price: 1796, tradeDt: "20240412", tradeTm: "105931"),OilPriceOfOilBank(prodcd: "D047", price: 1681, tradeDt: "20240412", tradeTm: "105843"),OilPriceOfOilBank(prodcd: "B034", price: 1896, tradeDt: "20240412", tradeTm: "105940")])
     var oilAvgPrice : OilAvgPriceModel? = OilAvgPriceModel(oilAvgresult: OilAvgResult(oilPrice: [
         OilPrice(tradeDt: "20240414", prodcd: "B027", prodnm: "휘발유", avgPrice: "1687.73", diff: "+2.35"),
         OilPrice(tradeDt: "20240414", prodcd: "D047", prodnm: "자동차용경유", avgPrice: "1558.47", diff: "+1.10"),
         OilPrice(tradeDt: "20240414", prodcd: "B034", prodnm: "고급휘발유", avgPrice: "1930.84", diff: "+1.08")]))
-
+    
     var mapContainer: KMViewContainer?
     var mapController: KMController?
     var selectedLong : Double = 126.8461
     var selectedLat : Double = 37.5358
     let infoYN = ["세차장", "편의점", "경정비", "품질인증"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //MARK: View 모서리 둥글게 만들기
         squreView1.layer.cornerRadius = 10
         squreView2.layer.cornerRadius = 10
         squreView3.layer.cornerRadius = 10
-
+        
         if let oilBank = oilBankInfo {
             lblName.text = oilBank.osNm
             lblAddr.text = oilBank.newAdr
@@ -55,7 +55,7 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
             lblGapOfDieselPrice.text = "-원"
             lblGapOfHighPrice.text = "-원"
             setLogoImg(for: oilBank)
-
+            
             //MARK: 유가 정보, 현 시세 대비 GAP
             var gasGap : String?
             var dieselGap : String?
@@ -84,108 +84,99 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
             } else {
                 lblGapOfGasPrice.text = "-원"
             }
-
+            
             if let dieselGap = dieselGap {
                 lblGapOfDieselPrice.text = "\(dieselGap)원"
                 gapColor(label: lblGapOfDieselPrice, gap: dieselGap)
             } else {
                 lblGapOfDieselPrice.text = "-원"
             }
-
+            
             if let highGap = highGap {
                 lblGapOfHighPrice.text = "\(highGap)원"
                 gapColor(label: lblGapOfHighPrice, gap: highGap)
             } else {
                 lblGapOfHighPrice.text = "-원"
             }
+            
+            configureLabels()
         }
-
-        //MARK: infoYNLabel
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal // 수평 스택뷰로 설정
-        stackView.spacing = 5
-        view.addSubview(stackView)
-
-        var previousLabel: UILabel?
-        let color = UIColor(red: 55/255, green: 202/255, blue: 236/255, alpha: 1.0)
-        let colors : [UIColor] = [color,color,color,color]
-
-        for (index, text) in infoYN.enumerated() {
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = text
-            label.font = lblYNInfo.font
-            label.textColor = UIColor.white
-            label.textAlignment = .center
-            label.layer.cornerRadius = 5
-            label.layer.masksToBounds = true
-            label.backgroundColor = colors[index % colors.count]
-            view.addSubview(label)
-
-            // 첫 번째 라벨의 경우 이전 라벨이 없으므로 스택뷰에 직접 추가
-            NSLayoutConstraint.activate([
-                label.topAnchor.constraint(equalTo: lblYNInfo.topAnchor),
-                label.heightAnchor.constraint(equalToConstant: 20),
-                label.widthAnchor.constraint(equalToConstant: 50)
-            ])
-
-
-            if let previousLabel = previousLabel {
-                NSLayoutConstraint.activate([
-                    label.leadingAnchor.constraint(equalTo: previousLabel.trailingAnchor, constant: stackView.spacing),
-                    label.widthAnchor.constraint(equalTo: previousLabel.widthAnchor), // 이전 라벨의 너비와 동일하게 설정
-                    label.heightAnchor.constraint(equalTo: previousLabel.heightAnchor) // 이전 라벨의 높이와 동일하게 설정
-                ])
+        
+        func calcPriceGap(currentPrice: Double?, avgPrice: String?) -> String? {
+            guard let currentPrice = currentPrice, let avgPrice = Double(avgPrice ?? "") else { return nil
             }
-            // 스택뷰에 라벨 추가
-            stackView.addArrangedSubview(label)
-            previousLabel = label
+            let gap = Int(currentPrice - avgPrice)
+            return gap >= 0 ? "+\(gap)" : "\(gap)"
         }
-
-        // 스택뷰의 레이아웃 설정
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: lblYNInfo.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: lblYNInfo.leadingAnchor)
-        ])
-    }
-
-    func configureLabels() {
-        let attributes: [(String,Bool)] = [("세차장", oilBankInfo?.carWashYn == "Y"),
-                                           ("편의점", oilBankInfo?.cvsYn == "Y"),
-                                           ("경정비", oilBankInfo?.maintYn == "Y"),
-                                           ("품질인증", oilBankInfo?.kpetroYn == "Y")]
-    }
-
-    func calcPriceGap(currentPrice: Double?, avgPrice: String?) -> String? {
-        guard let currentPrice = currentPrice, let avgPrice = Double(avgPrice ?? "") else { return nil
+        
+        func gapColor(label: UILabel, gap: String?) {
+            guard let gapString = gap, let gapInt = Int(gapString) else { return }
+            let gap = "\(gapString)"
+            let unitTxT = "원"
+            if gapInt > 0 {
+                label.textColor = .red
+            } else if gapInt < 0 {
+                label.textColor = .blue
+            } else {
+                label.textColor = .black
+            }
+            let attributedText = NSMutableAttributedString(string: gap + unitTxT)
+            attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: gap.count, length: unitTxT.count))
+            label.attributedText = attributedText
         }
-        let gap = Int(currentPrice - avgPrice)
-        return gap >= 0 ? "+\(gap)" : "\(gap)"
-    }
-
-    func gapColor(label: UILabel, gap: String?) {
-        guard let gapString = gap, let gapInt = Int(gapString) else { return }
-        let gap = "\(gapString)"
-        let unitTxT = "원"
-        if gapInt > 0 {
-            label.textColor = .red
-        } else if gapInt < 0 {
-            label.textColor = .blue
-        } else {
-            label.textColor = .black
+        
+        
+        //MARK: infoYNLabel
+        func configureLabels() {
+            let conditions: [(String,Bool?)] = [("세차장", oilBankInfo?.carWashYn == "Y"),
+                                                ("편의점", oilBankInfo?.cvsYn == "Y"),
+                                                ("경정비", oilBankInfo?.maintYn == "Y"),
+                                                ("품질인증", oilBankInfo?.kpetroYn == "Y")]
+            var previousLabel: UILabel?
+            for (text, condition) in conditions {
+                if let condition = condition, condition {
+                    let label = UILabel()
+                    label.translatesAutoresizingMaskIntoConstraints = false
+                    label.text = text
+                    label.font = lblYNInfo.font
+                    label.textColor = UIColor.white
+                    label.textAlignment = .center
+                    label.layer.cornerRadius = 5
+                    label.layer.masksToBounds = true
+                    label.backgroundColor = UIColor(red: 55/255, green: 202/255, blue: 236/255, alpha: 1.0)
+                    view.addSubview(label)
+                    
+                    NSLayoutConstraint.activate([
+                        label.topAnchor.constraint(equalTo: lblYNInfo.topAnchor),
+                        label.heightAnchor.constraint(equalToConstant: 20),
+                        label.widthAnchor.constraint(equalToConstant: 50) // 너비 조정 가능
+                    ])
+                    
+                    if let previousLabel = previousLabel {
+                        NSLayoutConstraint.activate([
+                            label.topAnchor.constraint(equalTo: lblYNInfo.bottomAnchor, constant: 5),
+                            label.leadingAnchor.constraint(equalTo: previousLabel.trailingAnchor, constant: 5)
+                        ])
+                    } else {
+                        NSLayoutConstraint.activate([
+                            label.topAnchor.constraint(equalTo: lblYNInfo.bottomAnchor, constant: 5),
+                            label.leadingAnchor.constraint(equalTo: lblYNInfo.leadingAnchor)
+                        ])
+                    }
+                    
+                    previousLabel = label
+                }
+            }
         }
-        let attributedText = NSMutableAttributedString(string: gap + unitTxT)
-        attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: gap.count, length: unitTxT.count))
-        label.attributedText = attributedText
     }
-
+    
+    
     //MARK: 주유소 로고
     func setLogoImg(for oilBankInfo: InfoOilBankList) {
         let imgName = oilBankInfo.pollDivCo
         imgLogo.image = UIImage(named: imgName)
     }
-
+    
     //MARK: 지도 넣기 개큰시도
     func addViews() {
         let selectedPosition : MapPoint = MapPoint(longitude: selectedLong, latitude: selectedLat)

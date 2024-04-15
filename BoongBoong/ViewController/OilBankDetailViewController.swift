@@ -13,7 +13,7 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgLogo: UIImageView!
-    @IBOutlet weak var lblYNInfo: UILabel! //셀프, 세차, 편의점 YN여부
+    @IBOutlet weak var lblYNInfo: UILabel!
     @IBOutlet weak var squreView1: UIView!
     @IBOutlet weak var squreView2: UIView!
     @IBOutlet weak var squreView3: UIView!
@@ -23,7 +23,7 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
     @IBOutlet weak var lblGapOfDieselPrice: UILabel!
     @IBOutlet weak var lblHighPrice: UILabel!
     @IBOutlet weak var lblGapOfHighPrice: UILabel!
-    @IBOutlet weak var mapView: KakaoMap! /*MKMapView!*/
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var lblAddr: UILabel!
     @IBOutlet weak var lblTel: UILabel!
     
@@ -37,7 +37,7 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
     var mapController: KMController?
     var selectedLong : Double = 126.8461
     var selectedLat : Double = 37.5358
-    
+    let infoYN = ["세차장", "편의점", "경정비", "품질인증"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +99,58 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
                 lblGapOfHighPrice.text = "-원"
             }
         }
+        
+        //MARK: infoYNLabel
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal // 수평 스택뷰로 설정
+        stackView.spacing = 5
+        view.addSubview(stackView)
+        
+        var previousLabel: UILabel?
+        let color = UIColor(red: 55/255, green: 202/255, blue: 236/255, alpha: 1.0)
+        let colors : [UIColor] = [color,color,color,color]
+        
+        for (index, text) in infoYN.enumerated() {
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.text = text
+            label.font = lblYNInfo.font
+            label.textColor = UIColor.white
+            label.textAlignment = .center
+            label.layer.cornerRadius = 5
+            label.layer.masksToBounds = true
+            label.backgroundColor = colors[index % colors.count]
+            view.addSubview(label)
+            
+            // 첫 번째 라벨의 경우 이전 라벨이 없으므로 스택뷰에 직접 추가
+            NSLayoutConstraint.activate([
+                label.topAnchor.constraint(equalTo: lblYNInfo.topAnchor),
+                label.heightAnchor.constraint(equalToConstant: 20),
+                label.widthAnchor.constraint(equalToConstant: 50)
+            ])
+
+            if let previousLabel = previousLabel {
+                NSLayoutConstraint.activate([
+                    label.leadingAnchor.constraint(equalTo: previousLabel.trailingAnchor, constant: stackView.spacing),
+                    label.widthAnchor.constraint(equalTo: previousLabel.widthAnchor), // 이전 라벨의 너비와 동일하게 설정
+                    label.heightAnchor.constraint(equalTo: previousLabel.heightAnchor) // 이전 라벨의 높이와 동일하게 설정
+                ])
+            }
+            // 스택뷰에 라벨 추가
+            stackView.addArrangedSubview(label)
+            previousLabel = label
+        }
+        
+        // 스택뷰의 레이아웃 설정
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: lblYNInfo.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: lblYNInfo.leadingAnchor)
+        ])
+    }
+    
+    func configureLabels() {
+        let attributes: [(String,Bool)] = [("세차장"), oil]
     }
     
     func calcPriceGap(currentPrice: Double?, avgPrice: String?) -> String? {

@@ -60,8 +60,8 @@ extension UIViewController {
         AF.request(endPoint, method: .get, parameters: params).responseDecodable(of: InfoOilBankModel.self) { response in
             switch response.result {
             case .success(let result) :
-                infoOilBank = result
-                //guard let infoOilBank = infoOilBank else { return }
+                let oilBank = result.infoOilBankResult.infoOilBank.last!
+                infoOilBank.append(oilBank)
             case .failure(let error) :
                 print("실패 : \(error.localizedDescription)")
             }

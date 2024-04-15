@@ -14,7 +14,7 @@ import Alamofire
 var regionPoint : RegionPointModel?
 var rangeOilBank : RangeOilBankModel?
 var oilAvgPrice : OilAvgPriceModel?
-var infoOilBank : InfoOilBankModel?
+var infoOilBank : [InfoOilBankList] = []
 var coord: CoordModel?
 
 
@@ -46,7 +46,6 @@ class MapPointViewSample : BaseViewController {
 //        searchOilBankWithXY(oilKey: oilKey, prodcd: "B027")
 //        dump(rangeOilBank?.rangeOilBankResult.rangeOilBank[0])
 //        searchOilAvgPrice(oilKey: oilKey)
-//        searchOilBankInfo(uniId: "A0000520", oilKey: oilKey)
 //        convertCoordinateBySystem(x:299017.76990 , y: 550893.57210, inputCoord: "KTM", ouputCoord: "WGS84", restKey: restKey)
         searchOilBankBoundary()
     }
@@ -66,6 +65,8 @@ class MapPointViewSample : BaseViewController {
         locationManager?.startUpdatingLocation()
         
     }
+
+    
     
     func createLabelLayer() {
         let view = mapController?.getView("mapview") as! KakaoMap
@@ -215,8 +216,28 @@ extension MapPointViewSample : GuiEventDelegate {
             
         } else if componentName == "currentLocation" {
             moveCameraToCurrentLocation()
+            showModal()
         }
     }
+    
+    func showModal() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let modalViewController = storyboard.instantiateViewController(withIdentifier: "modal") as? ModalViewController else { return }
+
+        print(modalViewController)
+        
+        modalViewController.view.backgroundColor = .white
+        modalViewController.modalPresentationStyle = .formSheet
+        
+        
+        if let sheetController = modalViewController.sheetPresentationController { //모달 스타일 설정
+            sheetController.detents = [.large(), .medium()]
+            sheetController.preferredCornerRadius = 12
+            sheetController.prefersGrabberVisible = true
+        }
+        present(modalViewController, animated: true, completion: nil)
+    }
+    
     
     func searchOilBankBoundary() {
         searchXYWithAddressName(query: "화곡동", size: 10, page: 1, restKey: restKey) { [unowned self] doc in
@@ -239,7 +260,8 @@ extension MapPointViewSample : GuiEventDelegate {
 
                     for oilBank in oilBanks {
                         convertCoordinateBySystem(x: oilBank.gisXCoor, y: oilBank.gisYCoor, inputCoord: "KTM", ouputCoord: "WGS84", restKey: self.restKey) { doc in
-                            print(oilBank)
+                            searchOilBankInfo(uniId: oilBank.uniID, oilKey: self.oilKey)
+                            
                             print(doc.x, doc.y)
                             guard let layer else { return }
                             let poi1 = layer.addPoi(option: poiOption, at: MapPoint(longitude: doc.x, latitude: doc.y))

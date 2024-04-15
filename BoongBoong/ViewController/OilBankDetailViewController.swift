@@ -32,21 +32,21 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
         OilPrice(tradeDt: "20240414", prodcd: "B027", prodnm: "휘발유", avgPrice: "1687.73", diff: "+2.35"),
         OilPrice(tradeDt: "20240414", prodcd: "D047", prodnm: "자동차용경유", avgPrice: "1558.47", diff: "+1.10"),
         OilPrice(tradeDt: "20240414", prodcd: "B034", prodnm: "고급휘발유", avgPrice: "1930.84", diff: "+1.08")]))
-    
+
     var mapContainer: KMViewContainer?
     var mapController: KMController?
     var selectedLong : Double = 126.8461
     var selectedLat : Double = 37.5358
     let infoYN = ["세차장", "편의점", "경정비", "품질인증"]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //MARK: View 모서리 둥글게 만들기
         squreView1.layer.cornerRadius = 10
         squreView2.layer.cornerRadius = 10
         squreView3.layer.cornerRadius = 10
-        
+
         if let oilBank = oilBankInfo {
             lblName.text = oilBank.osNm
             lblAddr.text = oilBank.newAdr
@@ -55,7 +55,7 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
             lblGapOfDieselPrice.text = "-원"
             lblGapOfHighPrice.text = "-원"
             setLogoImg(for: oilBank)
-            
+
             //MARK: 유가 정보, 현 시세 대비 GAP
             var gasGap : String?
             var dieselGap : String?
@@ -84,14 +84,14 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
             } else {
                 lblGapOfGasPrice.text = "-원"
             }
-            
+
             if let dieselGap = dieselGap {
                 lblGapOfDieselPrice.text = "\(dieselGap)원"
                 gapColor(label: lblGapOfDieselPrice, gap: dieselGap)
             } else {
                 lblGapOfDieselPrice.text = "-원"
             }
-            
+
             if let highGap = highGap {
                 lblGapOfHighPrice.text = "\(highGap)원"
                 gapColor(label: lblGapOfHighPrice, gap: highGap)
@@ -99,18 +99,18 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
                 lblGapOfHighPrice.text = "-원"
             }
         }
-        
+
         //MARK: infoYNLabel
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal // 수평 스택뷰로 설정
         stackView.spacing = 5
         view.addSubview(stackView)
-        
+
         var previousLabel: UILabel?
         let color = UIColor(red: 55/255, green: 202/255, blue: 236/255, alpha: 1.0)
         let colors : [UIColor] = [color,color,color,color]
-        
+
         for (index, text) in infoYN.enumerated() {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
@@ -122,13 +122,14 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
             label.layer.masksToBounds = true
             label.backgroundColor = colors[index % colors.count]
             view.addSubview(label)
-            
+
             // 첫 번째 라벨의 경우 이전 라벨이 없으므로 스택뷰에 직접 추가
             NSLayoutConstraint.activate([
                 label.topAnchor.constraint(equalTo: lblYNInfo.topAnchor),
                 label.heightAnchor.constraint(equalToConstant: 20),
                 label.widthAnchor.constraint(equalToConstant: 50)
             ])
+
 
             if let previousLabel = previousLabel {
                 NSLayoutConstraint.activate([
@@ -141,25 +142,28 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
             stackView.addArrangedSubview(label)
             previousLabel = label
         }
-        
+
         // 스택뷰의 레이아웃 설정
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: lblYNInfo.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: lblYNInfo.leadingAnchor)
         ])
     }
-    
+
     func configureLabels() {
-        let attributes: [(String,Bool)] = [("세차장"), oil]
+        let attributes: [(String,Bool)] = [("세차장", oilBankInfo?.carWashYn == "Y"),
+                                           ("편의점", oilBankInfo?.cvsYn == "Y"),
+                                           ("경정비", oilBankInfo?.maintYn == "Y"),
+                                           ("품질인증", oilBankInfo?.kpetroYn == "Y")]
     }
-    
+
     func calcPriceGap(currentPrice: Double?, avgPrice: String?) -> String? {
         guard let currentPrice = currentPrice, let avgPrice = Double(avgPrice ?? "") else { return nil
         }
         let gap = Int(currentPrice - avgPrice)
         return gap >= 0 ? "+\(gap)" : "\(gap)"
     }
-    
+
     func gapColor(label: UILabel, gap: String?) {
         guard let gapString = gap, let gapInt = Int(gapString) else { return }
         let gap = "\(gapString)"
@@ -175,13 +179,13 @@ class OilBankDetailViewController: UIViewController, MapControllerDelegate {
         attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: gap.count, length: unitTxT.count))
         label.attributedText = attributedText
     }
-    
+
     //MARK: 주유소 로고
     func setLogoImg(for oilBankInfo: InfoOilBankList) {
         let imgName = oilBankInfo.pollDivCo
         imgLogo.image = UIImage(named: imgName)
     }
-    
+
     //MARK: 지도 넣기 개큰시도
     func addViews() {
         let selectedPosition : MapPoint = MapPoint(longitude: selectedLong, latitude: selectedLat)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1mp-sz-Mg0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4uG-oM-2hm">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -48,9 +48,9 @@
                                             <constraint firstAttribute="height" constant="80" id="lF0-DX-kql"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="편의시설" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHr-yr-U7i">
-                                        <rect key="frame" x="88" y="59" width="59" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="세차장" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHr-yr-U7i">
+                                        <rect key="frame" x="88" y="55.666666666666657" width="31.333333333333329" height="14.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -58,10 +58,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="LHr-yr-U7i" firstAttribute="leading" secondItem="4Zb-Lp-W2v" secondAttribute="trailing" constant="8" id="ADb-dx-CUH"/>
-                                    <constraint firstAttribute="bottom" secondItem="LHr-yr-U7i" secondAttribute="bottom" id="EeM-ek-DLh"/>
                                     <constraint firstItem="6WV-zE-x2Y" firstAttribute="leading" secondItem="4Zb-Lp-W2v" secondAttribute="trailing" constant="5" id="VuP-If-GYd"/>
                                     <constraint firstItem="4Zb-Lp-W2v" firstAttribute="top" secondItem="FT7-Bc-VJL" secondAttribute="top" id="WDr-Y4-KCn"/>
                                     <constraint firstAttribute="height" constant="80" id="gXo-bJ-XSr"/>
+                                    <constraint firstAttribute="bottom" secondItem="LHr-yr-U7i" secondAttribute="bottom" constant="10" id="j49-Cd-emr"/>
                                     <constraint firstItem="6WV-zE-x2Y" firstAttribute="top" secondItem="FT7-Bc-VJL" secondAttribute="top" constant="10" id="qJy-c9-fGx"/>
                                     <constraint firstItem="4Zb-Lp-W2v" firstAttribute="leading" secondItem="FT7-Bc-VJL" secondAttribute="leading" id="sT5-Bd-EFd"/>
                                     <constraint firstAttribute="trailing" secondItem="6WV-zE-x2Y" secondAttribute="trailing" constant="8" id="who-SR-9rC"/>
@@ -462,7 +462,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

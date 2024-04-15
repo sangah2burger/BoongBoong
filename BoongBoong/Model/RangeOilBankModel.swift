@@ -41,3 +41,5 @@ struct RangeOilBank: Codable {
         case gisYCoor = "GIS_Y_COOR"
     }
 }
+
+

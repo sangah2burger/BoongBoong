@@ -27,6 +27,7 @@
 		19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BE2BC63725007B4667 /* MapPointViewSample.swift */; };
 		556F4DEE2BC94603002519EE /* CoordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F4DED2BC94603002519EE /* CoordModel.swift */; };
 		556F4DF02BC94938002519EE /* OilBankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */; };
+		556F4DF22BCCAF07002519EE /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F4DF12BCCAF07002519EE /* ModalViewController.swift */; };
 		55FFCBC02BC6876700012259 /* RegionPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFCBBF2BC6876000012259 /* RegionPointModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		19D322BE2BC63725007B4667 /* MapPointViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPointViewSample.swift; sourceTree = "<group>"; };
 		556F4DED2BC94603002519EE /* CoordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordModel.swift; sourceTree = "<group>"; };
 		556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OilBankDetailViewController.swift; sourceTree = "<group>"; };
+		556F4DF12BCCAF07002519EE /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		55FFCBBF2BC6876000012259 /* RegionPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionPointModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 				19D322BE2BC63725007B4667 /* MapPointViewSample.swift */,
 				19D322BC2BC599CB007B4667 /* ContainerViewController.swift */,
 				556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */,
+				556F4DF12BCCAF07002519EE /* ModalViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55FFCBC02BC6876700012259 /* RegionPointModel.swift in Sources */,
+				556F4DF22BCCAF07002519EE /* ModalViewController.swift in Sources */,
 				556F4DEE2BC94603002519EE /* CoordModel.swift in Sources */,
 				194FC28B2BC7EC60004DE27C /* KeywordPointModel.swift in Sources */,
 				195662CC2BC3833C0092B4E0 /* AppDelegate.swift in Sources */,

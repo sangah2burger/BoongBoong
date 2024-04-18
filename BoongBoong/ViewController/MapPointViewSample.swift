@@ -9,13 +9,14 @@ import UIKit
 import KakaoMapsSDK
 import CoreLocation
 import Alamofire
-
+import Lottie
 
 var regionPoint : RegionPointModel?
 var rangeOilBank : RangeOilBankModel?
 var oilAvgPrice : OilAvgPriceModel?
 var infoOilBank : [InfoOilBankList] = []
 var coord: CoordModel?
+var labelXY: [Document] = []
 
 
 class MapPointViewSample : BaseViewController {
@@ -23,6 +24,7 @@ class MapPointViewSample : BaseViewController {
     let oilKey = Bundle.main.oilKey!
     var locationManager: CLLocationManager?
     
+    @IBOutlet weak var searchBar: UISearchBar!
     override func addViews() {
         let defaultPosition : MapPoint = MapPoint(longitude: 126.8461, latitude : 37.5358)
         let mapviewInfo : MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 15)
@@ -30,6 +32,13 @@ class MapPointViewSample : BaseViewController {
         mapController?.addView(mapviewInfo)
         
     }
+    
+    private let animationView: LottieAnimationView = {
+        let lottieAnimationView = LottieAnimationView(name: "Untitled_file")
+        lottieAnimationView.backgroundColor = UIColor(red: 55/255, green: 202/255, blue: 236/255, alpha: 1/0)
+        return lottieAnimationView
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +50,20 @@ class MapPointViewSample : BaseViewController {
         //locationManager?.startUpdatingLocation()
         locationManager?.delegate = self
         
+        view.addSubview(animationView)
+        animationView.frame = view.bounds
+        animationView.center = view.center
+        animationView.alpha = 1.0
+        
+        animationView.play { _ in
+            UIView.animate(withDuration: 0.1, animations: {
+                self.animationView.alpha = 0
+            }, completion:  { _ in
+                self.animationView.isHidden = true
+                self.animationView.removeFromSuperview()
+            })
+        }
+        
         
 //        searchXYWithAddressName(query: "학동", restKey: restKey)
 //        searchOilBankWithXY(oilKey: oilKey, prodcd: "B027")
@@ -51,23 +74,21 @@ class MapPointViewSample : BaseViewController {
     }
     
     override func viewInit(viewName: String) {
-        print("OK")
         createLabelLayer()
         createPoiStyle()
-        //createCurrentPoiStyle()
-        
         createPois()
-        //createCurrentPois()
         
         showBasicGUIs()
         createSpriteGUI()
         createInfoWindow()
         locationManager?.startUpdatingLocation()
         
+        
+        
     }
 
     
-    
+    // MARK: KakaoMapSDK function
     func createLabelLayer() {
         let view = mapController?.getView("mapview") as! KakaoMap
         let manager = view.getLabelManager()
@@ -78,7 +99,7 @@ class MapPointViewSample : BaseViewController {
     func createPoiStyle() {
         let view = mapController?.getView("mapview") as! KakaoMap
         let manager = view.getLabelManager()
-        let iconStyle = PoiIconStyle(symbol: UIImage(named: "pin_red.png"), anchorPoint: CGPoint(x: 0.0, y: 0.5))
+        let iconStyle = PoiIconStyle(symbol: UIImage(named: "map_ico_marker.png"), anchorPoint: CGPoint(x: 0.0, y: 0.5))
         let perLevelStyle = PerLevelPoiStyle(iconStyle: iconStyle, level: 0)
         let poiStyle = PoiStyle(styleID: "customStyle1", styles: [perLevelStyle])
         manager.addPoiStyle(poiStyle)
@@ -91,47 +112,17 @@ class MapPointViewSample : BaseViewController {
         let layer = manager.getLabelLayer(layerID: "PoiLayer")
         let poiOption = PoiOptions(styleID: "customStyle1",poiID: "poi1")
         poiOption.rank = 0
-        
+        poiOption.clickable = true
         let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: 127, latitude: 37))
-        // PoiBadge를 생성하여 POI에 추가한다.
-        let badge = PoiBadge(badgeID: "noti", image: UIImage(named: "noti.png")!, offset: CGPoint(x: 0.1, y: 0.1), zOrder: 1)
-        poi1?.addBadge(badge)
+        
+        
         poi1?.show()
-        poi1?.showBadge(badgeID: "noti")
-        poi1?.moveAt(MapPoint(longitude: 127, latitude: 38), duration: 5000)
     }
     
-//    func createCurrentPoiStyle() {
-//        let view = mapController?.getView("mapview") as! KakaoMap
-//        let manager = view.getLabelManager()
-//        let iconStyle = PoiIconStyle(symbol: UIImage(named: "pin_green.png"), anchorPoint: CGPoint(x: 0.0, y: 0.5))
-//        let perLevelStyle = PerLevelPoiStyle(iconStyle: iconStyle, level: 0)
-//        let poiStyle = PoiStyle(styleID: "customStyle2", styles: [perLevelStyle])
-//        manager.addPoiStyle(poiStyle)
-//    }
-//    
-//    func createCurrentPois() {
-//        let view = mapController?.getView("mapview") as! KakaoMap
-//        let manager = view.getLabelManager()
-//        let layer = manager.getLabelLayer(layerID: "PoiLayer")
-//        let poiOption = PoiOptions(styleID: "customStyle2",poiID: "poi1")
-//        poiOption.rank = 0
-//        
-//        guard let currentX = CLLocationManager().location?.coordinate.longitude,
-//              let currentY = CLLocationManager().location?.coordinate.latitude else { return }
-//        
-//        let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: currentX, latitude: currentY))
-//        // PoiBadge를 생성하여 POI에 추가한다.
-//        let badge = PoiBadge(badgeID: "noti", image: UIImage(named: "noti.png")!, offset: CGPoint(x: 0.1, y: 0.1), zOrder: 1)
-//        poi1?.addBadge(badge)
-//        poi1?.show()
-//        poi1?.showBadge(badgeID: "noti")
-//
-//    }
     
     func showBasicGUIs() {
         let view = mapController?.getView("mapview") as! KakaoMap
-        view.setCompassPosition(origin: GuiAlignment(vAlign: .bottom, hAlign: .left), position: CGPoint(x: 10.0, y: 30.0))
+        view.setCompassPosition(origin: GuiAlignment(vAlign: .middle, hAlign: .right), position: CGPoint(x: 22, y: -50))
         view.showCompass()
     }
     
@@ -147,8 +138,8 @@ extension MapPointViewSample : GuiEventDelegate {
         spriteGui.arrangement = .horizontal
         spriteGui.bgColor = UIColor.clear
         spriteGui.splitLineColor = UIColor.white
-        spriteGui.origin = GuiAlignment(vAlign: .bottom, hAlign: .right) //화면의 우하단으로 배치
-        spriteGui.position = CGPoint(x: 50, y: 50)
+        spriteGui.origin = GuiAlignment(vAlign: .middle, hAlign: .right)
+        spriteGui.position = CGPoint(x: 50, y: -200)
         
         
         let button = GuiButton("currentLocation")
@@ -238,9 +229,20 @@ extension MapPointViewSample : GuiEventDelegate {
         present(modalViewController, animated: true, completion: nil)
     }
     
+    func poiTappedHandler(_ param: PoiInteractionEventParam) {
+        let view = mapController?.getView("mapview") as! KakaoMap
+        let cameraUpdate = CameraUpdate.make(target: MapPoint(longitude: labelXY.first!.x, latitude: labelXY.first!.y), zoomLevel: 15, rotation: 0, tilt: 0.0, mapView: view)
+
+        view.animateCamera(cameraUpdate: cameraUpdate, options: CameraAnimationOptions(autoElevation: false, consecutive: true, durationInMillis: 1000))
+        print(labelXY)
+        showModal()
+        
+        //param.poiItem.hide()
+    }
     
-    func searchOilBankBoundary() {
-        searchXYWithAddressName(query: "화곡동", size: 10, page: 1, restKey: restKey) { [unowned self] doc in
+    
+    func searchOilBankBoundary(query: String = "화곡동") {
+        searchXYWithAddressName(query: query, size: 10, page: 1, restKey: restKey) { [unowned self] doc in
             guard let x = Double(doc.x), let y = Double(doc.y) else { return }
             convertCoordinateBySystem(x: x, y: y, inputCoord: "WGS84", ouputCoord: "KTM", restKey: self.restKey) { [unowned self] doc in
                 searchOilBankWithXY(katecX: doc.x, katecY: doc.y, radius: 1000, oilKey: self.oilKey) { [unowned self] oilBanks in
@@ -266,8 +268,10 @@ extension MapPointViewSample : GuiEventDelegate {
                             guard let layer else { return }
                             let poi1 = layer.addPoi(option: poiOption, at: MapPoint(longitude: doc.x, latitude: doc.y))
                             guard let poi1 else { return }
+                            poi1.clickable = true
+                            
+                            _ = poi1.addPoiTappedEventHandler(target: self, handler: MapPointViewSample.poiTappedHandler )
                             poi1.show()
-                            //poi1?.addPoiTappedEventHandler(target: <#T##U#>, handler: <#T##(U) -> (PoiInteractionEventParam) -> Void#>)
                         }
                     }
                 }
@@ -304,5 +308,18 @@ extension MapPointViewSample : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
         print("error\(error.localizedDescription)")
+    }
+}
+
+extension MapPointViewSample: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let view = mapController?.getView("mapview") as! KakaoMap
+        searchXYWithAddressName(query: searchBar.text!, restKey: restKey) { doc in
+            let cameraUpdate = CameraUpdate.make(target: MapPoint(longitude: Double(doc.x)!, latitude: Double(doc.y)!),  zoomLevel: 15 ,  mapView: view)
+            view.animateCamera(cameraUpdate: cameraUpdate, options: CameraAnimationOptions(autoElevation: false, consecutive: true, durationInMillis: 300))
+        }
+        searchOilBankBoundary(query: searchBar.text ?? "")
+        
+        
     }
 }

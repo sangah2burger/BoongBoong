@@ -77,12 +77,17 @@ extension UIViewController {
                     coord = result
                     guard let doc = coord?.documents.first else {return}
                     print("위도 : \(x) -> \(doc.x)\n경도 : \(y)) -> \(doc.y)")
+                    if doc.x < 150 {
+                        labelXY.append(doc)                        
+                    }
                     completion(doc)
                 case .failure(let error) :
                     print("에러 발생 : \(error.localizedDescription)")
                 }
             }
         }
+    
+    
 
 }
 

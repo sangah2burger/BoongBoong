@@ -25,6 +25,8 @@
 		19D322BB2BC5993F007B4667 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BA2BC5993F007B4667 /* BaseViewController.swift */; };
 		19D322BD2BC599CB007B4667 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BC2BC599CB007B4667 /* ContainerViewController.swift */; };
 		19D322BF2BC63725007B4667 /* MapPointViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D322BE2BC63725007B4667 /* MapPointViewSample.swift */; };
+		551FCB8D2BD0E55300A17E3C /* Untitled_file.json in Resources */ = {isa = PBXBuildFile; fileRef = 551FCB8C2BD0E55300A17E3C /* Untitled_file.json */; };
+		551FCB912BD0E66F00A17E3C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 551FCB902BD0E66F00A17E3C /* Lottie */; };
 		556F4DEE2BC94603002519EE /* CoordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F4DED2BC94603002519EE /* CoordModel.swift */; };
 		556F4DF02BC94938002519EE /* OilBankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */; };
 		556F4DF22BCCAF07002519EE /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F4DF12BCCAF07002519EE /* ModalViewController.swift */; };
@@ -62,6 +64,7 @@
 		19D322BA2BC5993F007B4667 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		19D322BC2BC599CB007B4667 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		19D322BE2BC63725007B4667 /* MapPointViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPointViewSample.swift; sourceTree = "<group>"; };
+		551FCB8C2BD0E55300A17E3C /* Untitled_file.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Untitled_file.json; sourceTree = "<group>"; };
 		556F4DED2BC94603002519EE /* CoordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordModel.swift; sourceTree = "<group>"; };
 		556F4DEF2BC94938002519EE /* OilBankDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OilBankDetailViewController.swift; sourceTree = "<group>"; };
 		556F4DF12BCCAF07002519EE /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551FCB912BD0E66F00A17E3C /* Lottie in Frameworks */,
 				1979BAC72BC3936B009D8269 /* Kingfisher in Frameworks */,
 				1979BACC2BC39373009D8269 /* AlamofireDynamic in Frameworks */,
 				1979BACA2BC39373009D8269 /* Alamofire in Frameworks */,
@@ -101,10 +105,19 @@
 				55FFCBC12BC6877900012259 /* ViewController */,
 				195662D12BC3833C0092B4E0 /* Main.storyboard */,
 				195662D42BC3833E0092B4E0 /* Assets.xcassets */,
-				195662D62BC3833E0092B4E0 /* LaunchScreen.storyboard */,
+				551FCB8E2BD0E56300A17E3C /* LaunchScreen */,
 				195662D92BC3833E0092B4E0 /* Info.plist */,
 			);
 			path = BoongBoong;
+			sourceTree = "<group>";
+		};
+		551FCB8E2BD0E56300A17E3C /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				195662D62BC3833E0092B4E0 /* LaunchScreen.storyboard */,
+				551FCB8C2BD0E55300A17E3C /* Untitled_file.json */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		55FFCBC12BC6877900012259 /* ViewController */ = {
@@ -164,6 +177,7 @@
 				1979BAC92BC39373009D8269 /* Alamofire */,
 				1979BACB2BC39373009D8269 /* AlamofireDynamic */,
 				19D322B42BC541F0007B4667 /* KakaoMapsSDK-SPM */,
+				551FCB902BD0E66F00A17E3C /* Lottie */,
 			);
 			productName = BoongBoong;
 			productReference = 1979BB102BC398EE009D8269 /* BoongBoong.app */;
@@ -197,6 +211,7 @@
 				1979BAC52BC3936B009D8269 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				1979BAC82BC39373009D8269 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				19D322B32BC541F0007B4667 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
+				551FCB8F2BD0E66F00A17E3C /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 195662BF2BC3833C0092B4E0;
 			projectDirPath = "";
@@ -214,6 +229,7 @@
 			files = (
 				195662D52BC3833E0092B4E0 /* Assets.xcassets in Resources */,
 				195662D82BC3833E0092B4E0 /* Base in Resources */,
+				551FCB8D2BD0E55300A17E3C /* Untitled_file.json in Resources */,
 				195662D32BC3833C0092B4E0 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,6 +544,14 @@
 				minimumVersion = 2.10.4;
 			};
 		};
+		551FCB8F2BD0E66F00A17E3C /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -550,6 +574,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 19D322B32BC541F0007B4667 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
 			productName = "KakaoMapsSDK-SPM";
+		};
+		551FCB902BD0E66F00A17E3C /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 551FCB8F2BD0E66F00A17E3C /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
